@@ -57,6 +57,9 @@ onAdd: function (map) {
         controlUI.title = 'Upload a CSV file (format: Lat, Lng, Name)';
         controlUI.href = '#';
 		L.DomEvent.addListener(controlUI, 'click', function(){
+		    $(".myButton .stoplocateMeButtonWatch").hide();
+      		$(".myButton .clearidepthButton").hide();
+
 					          if(uploadCSV()){
 								  
 							  }else{
@@ -167,9 +170,12 @@ onAdd: function (map) {
             .addListener(controlDiv, 'click', L.DomEvent.preventDefault) 
        
    var controlUI = L.DomUtil.create('a', 'idepthButton myButton ', controlDiv);
-        controlUI.title = 'Click Map for Depths';
+        controlUI.title = 'Click bathymetry layer for Depths';
         controlUI.href = '#';
 		L.DomEvent.addListener(controlUI, 'click', function(){
+			$(".myButton .stoplocateMeButtonWatch").hide();
+      		$(".myButton .clearuploadcsv").hide();
+
 			 iDepthStart();
 			 controlUIClear.style.display = 'block';
 		});
@@ -243,6 +249,9 @@ onAdd: function (map) {
         controlUI.title = 'Show my Location';
         controlUI.href = '#';
 		L.DomEvent.addListener(controlUI, 'click', function(){
+			$(".myButton .clearuploadcsv").hide();
+      		$(".myButton .clearidepthButton").hide();
+
 		checkGeolocationWatch();
 		 controlUIClear.style.display = 'block';
 		});
@@ -374,6 +383,7 @@ function onErrorWatch(e){
 			}
 		}
 
+//Print Map Control
 L.Control.printMap = L.Control.extend({
 	options: {
 		position: 'topleft',
