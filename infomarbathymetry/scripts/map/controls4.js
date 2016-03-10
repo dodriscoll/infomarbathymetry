@@ -57,7 +57,8 @@ onAdd: function (map) {
         controlUI.title = 'Upload a CSV file (format: Lat, Lng, Name)';
         controlUI.href = '#';
 		L.DomEvent.addListener(controlUI, 'click', function(){
-		    $(".myButton .stoplocateMeButtonWatch").hide();
+		$(".myButton .stoplocateMeButtonWatch").click();
+		$(".myButton .stoplocateMeButtonWatch").hide();
       		$(".myButton .clearidepthButton").hide();
 
 					          if(uploadCSV()){
@@ -173,8 +174,9 @@ onAdd: function (map) {
         controlUI.title = 'Click bathymetry layer for Depths';
         controlUI.href = '#';
 		L.DomEvent.addListener(controlUI, 'click', function(){
+			$(".myButton .stoplocateMeButtonWatch").click();
 			$(".myButton .stoplocateMeButtonWatch").hide();
-      		$(".myButton .clearuploadcsv").hide();
+      			$(".myButton .clearuploadcsv").hide();
 
 			 iDepthStart();
 			 controlUIClear.style.display = 'block';
