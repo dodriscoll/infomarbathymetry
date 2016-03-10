@@ -1,4 +1,16 @@
 $(function () {
+    $(".printButton")
+      .mouseenter(function (event) {
+		$('#printArea').show();
+          event.preventDefault();
+      })   
+	  .mouseleave(function (event) {
+		$('#printArea').fadeOut(4000);
+          event.preventDefault();
+      });
+});
+
+$(function () {
     $("#uploadCSVBtn")
       .button({
           text: false,
