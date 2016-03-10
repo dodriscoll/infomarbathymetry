@@ -26,20 +26,6 @@ $(function () {
 });
 
 $(function () {
-    $("#uploadCSVBtn")
-      .button({
-          text: false,
-          icons: {
-              primary: "ui-icon-arrowthick-1-n"
-          }
-      })
-      .click(function (event) {
-		  $('uploadCSV').show("slow");
-		  togglePanel('#uploadCSV');
-          event.preventDefault();
-      });
-});
-$(function () {
     $("#newbutton")
       .button({
           text: false,
