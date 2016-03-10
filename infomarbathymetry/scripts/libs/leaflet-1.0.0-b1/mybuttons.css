@@ -88,5 +88,16 @@ background-image: url(images/redmymarker-icon_x.png);
 /* 	width: 26px;
 	height: 26px; */
 	}
-	
+.printButton {
+	background-image: url(images/icon_printer.gif);
+	background-color: #D2FEFF;
+/* 	width: 26px;
+	height: 26px; */
+	}
+.printButton a:hover {
+	background-image: url(images/icon_printer.gif);
+	background-color: #D2FEFF;
+/* 	width: 26px;
+	height: 26px; */
+	}		
 	
