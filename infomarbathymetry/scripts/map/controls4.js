@@ -475,7 +475,13 @@ var printSetupMap = function(){
 };
 
 var resetMap = function(){
-	location.reload();
+		$('div.leaflet-top.leaflet-left').show();
+			$('div.leaflet-top.leaflet-right').show();
+			$('div.leaflet-bottom.leaflet-right').show();
+			$('div.leaflet-bottom.leaflet-left').show();
+			$('div.leaflet-top.leaflet-left').show();
+			$('#printArea').css({"border-color": "red","border-width":"1px","border-style":"solid"});  
+			$('div.leaflet-control-scale.leaflet-control').appendTo('div.leaflet-bottom.leaflet-left');
 };		
 
 
