@@ -373,7 +373,98 @@ function onErrorWatch(e){
 				map.spin(false);
 			}
 		}
+
+L.Control.printMap = L.Control.extend({
+	options: {
+		position: 'topleft',
+		popupOptions: { 
+      className: 'leaflet-measure-resultpopup',
+      autoPanPadding: [10, 10]
+	}
+	},
+
+onAdd: function (map) {
+	var controlDiv = L.DomUtil.create('div', 'printButton myButton leaflet-bar');
+        L.DomEvent
+            .addListener(controlDiv, 'click', L.DomEvent.stopPropagation)
+            .addListener(controlDiv, 'click', L.DomEvent.preventDefault)
+			.addListener(controlDiv, 'click', function () {
+				$('#printArea').stop().animate({opacity:'100'});
+			printSetupMap();
+	         $('div.print').printPage();
+	         });
 		
+        var controlUI = L.DomUtil.create('a', 'printButton', controlDiv);
+        //controlUI.title = 'Print Map';
+        controlUI.href = '#';
+		return controlDiv;
+}
+});
+
+(function(jQuery) {
+    jQuery.fn.printPage = function() {	
+       return this.each(function() {
+		window.alert("Please ensure pinter is setup to print page as A4 Landscape");   
+	        window.print(); 
+		
+		resetMap();
+		return false;    
+            //});
+       });
+    }
+})(jQuery);
+
+
+$(document).ready(function(){
+
+if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
+    {
+        alert('Opera');
+    }
+    else if(navigator.userAgent.indexOf("Chrome") != -1 )
+    {
+       	$('#printArea').css({"height":"17.7cm", "width":"25.9cm"}); 
+	console.log("Chrome");
+    }
+    else if(navigator.userAgent.indexOf("Safari") != -1)
+    {
+        alert('Safari');
+    }
+    else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
+    {
+         $('#printArea').css({"height":"17.6cm", "width":"27cm"}); 
+	console.log("FireFox");
+    }
+    else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
+    {
+     $('#printArea').css({"height":"17.5cm", "width":"27.5cm"});
+	console.log("Internet Explorer");
+    }  
+    else 
+    {
+       alert('unknown');
+    }
+});
+
+var printSetupMap = function(){
+	$('div.leaflet-top.leaflet-left').hide();
+			$('div.leaflet-top.leaflet-right').hide();
+			$('div.leaflet-bottom.leaflet-right').hide();
+			$('div.leaflet-bottom.leaflet-left').hide();
+			$('div.leaflet-top.leaflet-left').hide();
+			$('#depth-ranges').hide();
+			$('#form-Shading').hide();
+			$('#printText').hide();
+			$('#printArea').show();
+			$('#printArea').css({"border":"0px", 'display':'table'});  
+			$('div.leaflet-control-scale.leaflet-control').appendTo('#printlegend');
+			$('#maxPrint').text(endDepthInput.value +"m"); 
+			$('#minPrint').text(startDepthInput.value +"m"); 
+};
+
+var resetMap = function(){
+	location.reload();
+};		
 
 
 	
