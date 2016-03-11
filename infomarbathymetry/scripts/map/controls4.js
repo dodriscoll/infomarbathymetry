@@ -416,7 +416,7 @@ onAdd: function (map) {
 (function(jQuery) {
     jQuery.fn.printPage = function() {	
        return this.each(function() {
-		window.alert("Printed map boundaries may differ to browser window extents. Map is dsigned to be printed as A4 Landscape");   
+		window.alert("Printed map boundaries may differ to browser window extents. \n\nMap is dsigned to be printed as A4 Landscape");   
 	        window.print(); 
 		
 		resetMap();
