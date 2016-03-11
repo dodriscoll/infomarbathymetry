@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>INFOMAR Bathymetry Viewer</title>
@@ -291,17 +291,15 @@
 		font-size: 12px;
 		max-width: 150px;
 		}
-		#printArea{
+#printArea{
 position:absolute; 
 top:0; 
 left:0; 
-height:17.7cm; 
-width:25.9cm; 
-border: red solid 1px;
-border-radius: 2px;
 z-index:500;
-text-align: center;
 display: none;
+border-radius: 2px;
+overflow: auto;
+padding-:5px;
 }
 
 #printlegend{
@@ -312,8 +310,12 @@ border: grey solid 1px;
 border-radius: 2px;
 background-color: white;
 padding:5px;
+text-align:right;
 }
-
+img {
+    float: right;
+    margin: 0px 0px 0px 2px;
+}
 		</style>
 		<style>
 		@media only screen and (max-device-width: 480px) {
@@ -373,18 +375,18 @@ padding:5px;
 <body>
 	<div id="container">
 		<div id="map" class="print"></div>
-			<div id="printArea">
+	<div id="printArea">
 			<div id="printlegend">
 				<span>
-				<span id="maxPrint" style="vertical-align:top"></span>
-				<img id="colorLeg" src="images/BlueGreenOrange.png" alt="Legend">
-				<span id="minPrint" style="vertical-align:bottom"></span>	
-				</span>
+					<img id="colorLeg" src="images/BlueGreenOrange.png" alt="Legend">
+					<span id="maxPrint" style="vertical-align:top"></span><br><br><br><br><br><br><br>
+					<span id="minPrint" style="vertical-align:bottom"></span>	
+					</span>
 				<br><br>
 				<img src="images/INFOMAR_logo_C.png" alt="N" style="margin-bottom:10px"><br>
 			</div>
-		<div id="printText">A4 Landscape Print Area</div>
-	</div>
+	
+</div>	
 		<div id="form-Shading" class="leaflet-bar">
             <div id="toolbar_shaded" class="ui-widget-header ui-corner-all">
                 <span id="shadedlayerOnOff">
