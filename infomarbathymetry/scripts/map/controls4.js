@@ -57,6 +57,10 @@ onAdd: function (map) {
         controlUI.title = 'Upload a CSV file (format: Lat, Lng, Name)';
         controlUI.href = '#';
 		L.DomEvent.addListener(controlUI, 'click', function(){
+		$(".myButton .stoplocateMeButtonWatch").click();
+		$(".myButton .stoplocateMeButtonWatch").hide();
+      		$(".myButton .clearidepthButton").hide();
+
 					          if(uploadCSV()){
 								  
 							  }else{
@@ -167,9 +171,13 @@ onAdd: function (map) {
             .addListener(controlDiv, 'click', L.DomEvent.preventDefault) 
        
    var controlUI = L.DomUtil.create('a', 'idepthButton myButton ', controlDiv);
-        controlUI.title = 'Click Map for Depths';
+        controlUI.title = 'Click bathymetry layer for Depths';
         controlUI.href = '#';
 		L.DomEvent.addListener(controlUI, 'click', function(){
+			$(".myButton .stoplocateMeButtonWatch").click();
+			$(".myButton .stoplocateMeButtonWatch").hide();
+      			$(".myButton .clearuploadcsv").hide();
+
 			 iDepthStart();
 			 controlUIClear.style.display = 'block';
 		});
@@ -243,6 +251,9 @@ onAdd: function (map) {
         controlUI.title = 'Show my Location';
         controlUI.href = '#';
 		L.DomEvent.addListener(controlUI, 'click', function(){
+			$(".myButton .clearuploadcsv").hide();
+      		$(".myButton .clearidepthButton").hide();
+
 		checkGeolocationWatch();
 		 controlUIClear.style.display = 'block';
 		});
@@ -373,7 +384,75 @@ function onErrorWatch(e){
 				map.spin(false);
 			}
 		}
+
+//Print Map Control
+L.Control.printMap = L.Control.extend({
+	options: {
+		position: 'topleft',
+		popupOptions: { 
+      className: 'leaflet-measure-resultpopup',
+      autoPanPadding: [10, 10]
+	}
+	},
+
+onAdd: function (map) {
+	var controlDiv = L.DomUtil.create('div', 'printButton myButton leaflet-bar');
+        L.DomEvent
+            .addListener(controlDiv, 'click', L.DomEvent.stopPropagation)
+            .addListener(controlDiv, 'click', L.DomEvent.preventDefault)
+			.addListener(controlDiv, 'click', function () {
+				$('#printArea').stop().animate({opacity:'100'});
+			printSetupMap();
+	         $('div.print').printPage();
+	         });
 		
+        var controlUI = L.DomUtil.create('a', 'printButton', controlDiv);
+        //controlUI.title = 'Print Map';
+        controlUI.href = '#';
+		return controlDiv;
+}
+});
+
+(function(jQuery) {
+    jQuery.fn.printPage = function() {	
+       return this.each(function() {
+		window.alert("Printed map boundaries may differ to browser window extents. Map is dsigned to be printed as A4 Landscape");   
+	        window.print(); 
+		
+		resetMap();
+		return false;    
+            //});
+       });
+    }
+})(jQuery);
 
 
+var printSetupMap = function(){
+			$('div.leaflet-top.leaflet-left').hide();
+			$('div.leaflet-top.leaflet-right').hide();
+			$('div.leaflet-bottom.leaflet-right').hide();
+			$('div.leaflet-bottom.leaflet-left').hide();
+			$('div.leaflet-top.leaflet-left').hide();
+			$('#depth-ranges').hide();
+			$('#form-Shading').hide();
+			$('#north').show();
+			
+			var printHeight = window.innerHeight;
+			var printWidth = window.innerWidth;
+			$('#printArea').css({"width": printWidth, 'height': printHeight});
+			$('#printArea').css({"border":"2px", 'border-colour':'grey'});  
+			$('div.leaflet-control-scale.leaflet-control').appendTo('#printlegend');
+			$('#maxPrint').text(endDepthInput.value +"m"); 
+			$('#minPrint').text(startDepthInput.value +"m"); 
+};
+
+var resetMap = function(){
+		$('div.leaflet-top.leaflet-left').show();
+			$('div.leaflet-top.leaflet-right').show();
+			$('div.leaflet-bottom.leaflet-right').show();
+			$('div.leaflet-bottom.leaflet-left').show();
+			$('div.leaflet-top.leaflet-left').show();
+			$('div.leaflet-control-scale.leaflet-control').appendTo('div.leaflet-bottom.leaflet-left');
+			$('#printArea').hide();				
+};	
 	

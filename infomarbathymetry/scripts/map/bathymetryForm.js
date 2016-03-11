@@ -176,6 +176,7 @@ function colorRampsLegend(color) {
 	$('#GreenScale').hide();
 	$('#BlueGreenScale').hide();
 	$('#OrangeGreenBlueScale').hide();
+	$('#colorLeg').attr("src","images/Blue.png");
 break;
   }
   switch (color){
@@ -186,6 +187,7 @@ break;
 	$('#GreenScale').hide();
 	$('#BlueGreenScale').hide();
 	$('#OrangeGreenBlueScale').hide();
+	$('#colorLeg').attr("src","images/grey.png");
   }
     switch (color){
 	case "BlueGreen":
@@ -195,6 +197,7 @@ break;
 	$('#GreenScale').hide();
 	$('#BlueGreenScale').show();
 	$('#OrangeGreenBlueScale').hide();
+	$('#colorLeg').attr("src","images/blueGreen.png");
   }
     switch (color){
 	case "BlueBrown":
@@ -204,6 +207,7 @@ break;
 	$('#GreenScale').hide();
 	$('#BlueGreenScale').hide();
 	$('#OrangeGreenBlueScale').hide();
+	$('#colorLeg').attr("src","images/bluetoBrown.png");
   }
      switch (color){
 	case "Green":
@@ -213,6 +217,7 @@ break;
 	$('#GreenScale').show();
 	$('#BlueGreenScale').hide();
 	$('#OrangeGreenBlueScale').hide();
+	$('#colorLeg').attr("src","images/green.png");
   }
      switch (color){
 	case "OrangeGreenBlue":
@@ -222,6 +227,7 @@ break;
 	$('#GreenScale').hide();
 	$('#BlueGreenScale').hide();
 	$('#OrangeGreenBlueScale').show();
+	$('#colorLeg').attr("src","images/BlueGreenOrange.png");
   }
   
 };

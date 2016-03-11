@@ -1,17 +1,30 @@
 $(function () {
-    $("#uploadCSVBtn")
-      .button({
-          text: false,
-          icons: {
-              primary: "ui-icon-arrowthick-1-n"
-          }
-      })
-      .click(function (event) {
-		  $('uploadCSV').show("slow");
-		  togglePanel('#uploadCSV');
+    $(".printButton")
+      .mouseenter(function (event) {
+		$('#printArea').show();
+			
+			$('div.leaflet-top.leaflet-right').css({opacity:0});
+			$('div.leaflet-bottom.leaflet-right').css({opacity:0});
+			$('div.leaflet-bottom.leaflet-left').css({opacity:0});
+			$('div.leaflet-top.leaflet-left').css({opacity:0.5});
+			$('#depth-ranges').hide();
+			$('#form-Shading').hide();
+			$('#printArea').show();
+			$('div.leaflet-control-scale.leaflet-control').appendTo('#printlegend');
+			$('#maxPrint').text(endDepthInput.value +"m"); 
+			$('#minPrint').text(startDepthInput.value +"m"); 
+          event.preventDefault();
+      })   
+	  .mouseleave(function (event) {
+		$('#printArea').fadeOut(4000);
+			$('div.leaflet-top.leaflet-right').css({opacity:1});
+			$('div.leaflet-bottom.leaflet-right').css({opacity:1});
+			$('div.leaflet-bottom.leaflet-left').css({opacity:1});
+			$('div.leaflet-top.leaflet-left').css({opacity:1});
           event.preventDefault();
       });
 });
+
 $(function () {
     $("#newbutton")
       .button({

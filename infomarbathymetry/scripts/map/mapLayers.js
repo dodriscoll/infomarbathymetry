@@ -140,6 +140,8 @@ Bathy.on('load',function(e){
           map.spin(false);
       }, 3000);
 	  
+var printMapControl = new L.Control.printMap();
+map.addControl(printMapControl);
 
 L.controlCredits({
     image: "images/INFOMAR_logo_C.png",
@@ -164,12 +166,3 @@ map.addControl(uploadCSVControl);
 	primaryAreaUnit: 'sqmeters', 
 	secondaryAreaUnit: 'sqkilometers' 
   }).addTo(map);
-
-
- // map.on('zoomEnd', function (e){
-	 // if (zoom <'10'){
-		 // shadedreliefClick();
- // }
- // });
-
-
