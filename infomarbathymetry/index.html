@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>INFOMAR Bathymetry Viewer</title>
@@ -291,6 +291,31 @@
 		font-size: 12px;
 		max-width: 150px;
 		}
+#printArea{
+position:absolute; 
+top:0; 
+left:0; 
+z-index:500;
+display: none;
+border-radius: 2px;
+overflow: auto;
+padding-:5px;
+}
+
+#printlegend{
+position: float;
+float: left;
+margin-right: 5px;
+border: grey solid 1px;
+border-radius: 2px;
+background-color: white;
+padding:5px;
+text-align:right;
+}
+img {
+    float: right;
+    margin: 0px 0px 0px 2px;
+}
 		</style>
 		<style>
 		@media only screen and (max-device-width: 480px) {
@@ -349,7 +374,19 @@
 </head>
 <body>
 	<div id="container">
-		<div id="map"></div>
+		<div id="map" class="print"></div>
+	<div id="printArea">
+			<div id="printlegend">
+				<span>
+					<img id="colorLeg" src="images/BlueGreenOrange.png" alt="Legend">
+					<span id="maxPrint" style="vertical-align:top"></span><br><br><br><br><br><br><br>
+					<span id="minPrint" style="vertical-align:bottom"></span>	
+					</span>
+				<br><br>
+				<img src="images/INFOMAR_logo_C.png" alt="N" style="margin-bottom:10px"><br>
+			</div>
+	
+</div>	
 		<div id="form-Shading" class="leaflet-bar">
             <div id="toolbar_shaded" class="ui-widget-header ui-corner-all">
                 <span id="shadedlayerOnOff">
