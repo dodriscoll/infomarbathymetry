@@ -187,7 +187,7 @@ break;
 	$('#GreenScale').hide();
 	$('#BlueGreenScale').hide();
 	$('#OrangeGreenBlueScale').hide();
-	$('#colorLeg').attr("src","images/grey_txt.png");
+	$('#colorLeg').attr("src","images/grey.png");
   }
     switch (color){
 	case "BlueGreen":
