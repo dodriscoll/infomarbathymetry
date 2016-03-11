@@ -416,7 +416,7 @@ onAdd: function (map) {
 (function(jQuery) {
     jQuery.fn.printPage = function() {	
        return this.each(function() {
-		window.alert("Please ensure pinter is setup to print page as A4 Landscape");   
+		window.alert("Printed map boundaries may differ to browser window extents. Map is dsigned to be printed as A4 Landscape");   
 	        window.print(); 
 		
 		resetMap();
@@ -427,48 +427,20 @@ onAdd: function (map) {
 })(jQuery);
 
 
-$(document).ready(function(){
-
-if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
-    {
-        alert('Opera');
-    }
-    else if(navigator.userAgent.indexOf("Chrome") != -1 )
-    {
-       	$('#printArea').css({"height":"17.7cm", "width":"25.9cm"}); 
-	console.log("Chrome");
-    }
-    else if(navigator.userAgent.indexOf("Safari") != -1)
-    {
-        alert('Safari');
-    }
-    else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
-    {
-         $('#printArea').css({"height":"17.6cm", "width":"27cm"}); 
-	console.log("FireFox");
-    }
-    else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
-    {
-     $('#printArea').css({"height":"17.5cm", "width":"27.5cm"});
-	console.log("Internet Explorer");
-    }  
-    else 
-    {
-       alert('unknown');
-    }
-});
-
 var printSetupMap = function(){
-	$('div.leaflet-top.leaflet-left').hide();
+			$('div.leaflet-top.leaflet-left').hide();
 			$('div.leaflet-top.leaflet-right').hide();
 			$('div.leaflet-bottom.leaflet-right').hide();
 			$('div.leaflet-bottom.leaflet-left').hide();
 			$('div.leaflet-top.leaflet-left').hide();
 			$('#depth-ranges').hide();
 			$('#form-Shading').hide();
-			$('#printText').hide();
-			$('#printArea').show();
-			$('#printArea').css({"border":"0px", 'display':'table'});  
+			$('#north').show();
+			
+			var printHeight = window.innerHeight;
+			var printWidth = window.innerWidth;
+			$('#printArea').css({"width": printWidth, 'height': printHeight});
+			$('#printArea').css({"border":"2px", 'border-colour':'grey'});  
 			$('div.leaflet-control-scale.leaflet-control').appendTo('#printlegend');
 			$('#maxPrint').text(endDepthInput.value +"m"); 
 			$('#minPrint').text(startDepthInput.value +"m"); 
@@ -480,9 +452,7 @@ var resetMap = function(){
 			$('div.leaflet-bottom.leaflet-right').show();
 			$('div.leaflet-bottom.leaflet-left').show();
 			$('div.leaflet-top.leaflet-left').show();
-			$('#printArea').css({"border-color": "red","border-width":"1px","border-style":"solid"});  
 			$('div.leaflet-control-scale.leaflet-control').appendTo('div.leaflet-bottom.leaflet-left');
-};		
-
-
+			$('#printArea').hide();				
+};	
 	
