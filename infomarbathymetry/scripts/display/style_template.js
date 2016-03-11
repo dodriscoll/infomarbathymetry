@@ -21,6 +21,7 @@ $(function () {
 			$('div.leaflet-bottom.leaflet-right').css({opacity:1});
 			$('div.leaflet-bottom.leaflet-left').css({opacity:1});
 			$('div.leaflet-top.leaflet-left').css({opacity:1});
+			$('div.leaflet-control-scale.leaflet-control').appendTo('div.leaflet-bottom.leaflet-left');
           event.preventDefault();
       });
 });
