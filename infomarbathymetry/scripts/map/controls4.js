@@ -48,25 +48,37 @@ L.Control.uploadCSVfile = L.Control.extend({
 	},
 
 onAdd: function (map) {
-        var controlDiv = L.DomUtil.create('div', 'myButton leaflet-bar');
+        var controlDiv = L.DomUtil.create('div', 'myButton leaflet-bar ');
         L.DomEvent
             .addListener(controlDiv, 'click', L.DomEvent.stopPropagation)
             .addListener(controlDiv, 'click', L.DomEvent.preventDefault)
 		
         var controlUI = L.DomUtil.create('a', 'uploadcsv myButton', controlDiv);
-        controlUI.title = 'Upload a CSV file (format: Lat, Lng, Name)';
         controlUI.href = '#';
-		L.DomEvent.addListener(controlUI, 'click', function(){
-		$(".myButton .stoplocateMeButtonWatch").click();
-		$(".myButton .stoplocateMeButtonWatch").hide();
-      		$(".myButton .clearidepthButton").hide();
+		
+		 // L.DomEvent.addListener(controlUI, 'mouseenter', function (e) {
+		 // controlUIClear.style.display = 'block';
+		 // //$('#uploadCSV').show();
+		 // });
+		// L.DomEvent.addListener(controlUI, 'mouseleave', function (e) {
+		// controlUIClear.style.display = 'none';
+		// //$('#uploadCSV').hide();
+		// });	
+		
+		L.DomEvent
+			.addListener(controlUI, 'click', function(e){
 
 					          if(uploadCSV()){
 								  
 							  }else{
 							  };
 			controlUIClear.style.display = 'block';
-        });
+			
+			L.DomEvent.addListener(controlUI, 'mouseleave',function(e){
+						 controlUIClear.style.display = 'block';
+						$('#uploadCSV').show();
+			});
+       	});
 					
 		var controlUIClear = L.DomUtil.create('a', 'clearuploadcsv myButton', controlDiv);
 		controlUIClear.title = 'Clear Map';
@@ -79,7 +91,15 @@ onAdd: function (map) {
 			controlUIClear.style.display = 'none';
 			$('#uploadCSV').hide();
 			$('#upload').val('');
+			
+		// L.DomEvent.addListener(controlUI, 'mouseleave', function (e) {
+		// controlUIClear.style.display = 'none';
+		// $('#uploadCSV').hide();
+		// });	
 		});	
+
+		var title = 'Upload a CSV file (format: Lat, Lng, Name)';
+		expand(controlUI, controlUIClear, title);
 		return controlDiv;
 },		
 });
@@ -165,22 +185,26 @@ L.Control.idDepth = L.Control.extend({
     },
 
 onAdd: function (map) {
-            var controlDiv = L.DomUtil.create('div', 'myButton leaflet-bar');		
+            var controlDiv = L.DomUtil.create('div', 'myButton leaflet-bar');
+		
         L.DomEvent
            	.addListener(controlDiv, 'click', L.DomEvent.stopPropagation)
             .addListener(controlDiv, 'click', L.DomEvent.preventDefault) 
        
-   var controlUI = L.DomUtil.create('a', 'idepthButton myButton ', controlDiv);
-        controlUI.title = 'Click bathymetry layer for Depths';
+   var controlUI = L.DomUtil.create('a', 'idepthButton myButton', controlDiv);
         controlUI.href = '#';
+		
 		L.DomEvent.addListener(controlUI, 'click', function(){
-			$(".myButton .stoplocateMeButtonWatch").click();
-			$(".myButton .stoplocateMeButtonWatch").hide();
-      			$(".myButton .clearuploadcsv").hide();
-
 			 iDepthStart();
 			 controlUIClear.style.display = 'block';
+				
+		// L.DomEvent.addListener(controlUI, 'mouseleave', function (e) {
+		// controlUIClear.style.display = 'block';
+		// });		 
+			 
 		});
+	
+		
 	var controlUIClear = L.DomUtil.create('a', 'clearidepthButton myButton', controlDiv);
 		controlUIClear.title = 'Clear Map';
 		controlUIClear.href = '#';
@@ -192,8 +216,15 @@ onAdd: function (map) {
 			depthMarker.clearLayers();
 			map.off('click', iDepthClick);
 			controlUIClear.style.display = 'none';	
+		L.DomEvent.addListener(controlUI, 'mouseleave', function (e) {
+		controlUIClear.style.display = 'none';
 		});		
+		
+		});		
+		var title = 'Click Map for Depths';
+		expand(controlUI, controlUIClear, title);	
 			return controlDiv;	
+		
 		}
 });
 
@@ -251,13 +282,10 @@ onAdd: function (map) {
         controlUI.title = 'Show my Location';
         controlUI.href = '#';
 		L.DomEvent.addListener(controlUI, 'click', function(){
-			$(".myButton .clearuploadcsv").hide();
-      		$(".myButton .clearidepthButton").hide();
-
 		checkGeolocationWatch();
 		 controlUIClear.style.display = 'block';
 		});
-		
+				
 		var controlUIClear = L.DomUtil.create('a', 'stoplocateMeButtonWatch myButton', controlDiv);
 		controlUIClear.title = 'Clear Map';
 		controlUIClear.href = '#';
@@ -272,7 +300,13 @@ onAdd: function (map) {
 		circleLocWatch.clearLayers();
 		controlUIClear.style.display = 'none';
 		navigator.geolocation.clearWatch(id);	
+		L.DomEvent.addListener(controlUI, 'mouseleave', function (e) {
+		controlUIClear.style.display = 'none';
+		});		
 		});
+		
+		var title = 'Locate me using Mobile Device Geolocation';
+		expand(controlUI, controlUIClear, title);	
 		return controlDiv;
 }		
 });
@@ -384,6 +418,7 @@ function onErrorWatch(e){
 				map.spin(false);
 			}
 		}
+		
 
 //Print Map Control
 L.Control.printMap = L.Control.extend({
@@ -396,63 +431,68 @@ L.Control.printMap = L.Control.extend({
 	},
 
 onAdd: function (map) {
-	var controlDiv = L.DomUtil.create('div', 'printButton myButton leaflet-bar');
+	var controlDiv = L.DomUtil.create('div', 'printButton  myButton leaflet-bar');
+	
         L.DomEvent
             .addListener(controlDiv, 'click', L.DomEvent.stopPropagation)
             .addListener(controlDiv, 'click', L.DomEvent.preventDefault)
 			.addListener(controlDiv, 'click', function () {
-				$('#printArea').stop().animate({opacity:'100'});
-			printSetupMap();
-	         $('div.print').printPage();
+				printMap();
+				resetMap();
 	         });
 		
         var controlUI = L.DomUtil.create('a', 'printButton', controlDiv);
-        //controlUI.title = 'Print Map';
         controlUI.href = '#';
 		return controlDiv;
 }
 });
 
-(function(jQuery) {
-    jQuery.fn.printPage = function() {	
-       return this.each(function() {
-		window.alert("Printed map boundaries may differ to browser window extents. \n\nMap is dsigned to be printed as A4 Landscape");   
-	        window.print(); 
-		
-		resetMap();
-		return false;    
-            //});
-       });
-    }
-})(jQuery);
 
-
-var printSetupMap = function(){
-			$('div.leaflet-top.leaflet-left').hide();
-			$('div.leaflet-top.leaflet-right').hide();
-			$('div.leaflet-bottom.leaflet-right').hide();
-			$('div.leaflet-bottom.leaflet-left').hide();
-			$('div.leaflet-top.leaflet-left').hide();
-			$('#depth-ranges').hide();
-			$('#form-Shading').hide();
-			$('#north').show();
-			
-			var printHeight = window.innerHeight;
-			var printWidth = window.innerWidth;
-			$('#printArea').css({"width": printWidth, 'height': printHeight});
-			$('#printArea').css({"border":"2px", 'border-colour':'grey'});  
+var printMap = function(){
+if(window.print) {	 
+			$('#printlegend').css({'display':'block','left':'0px'});
 			$('div.leaflet-control-scale.leaflet-control').appendTo('#printlegend');
-			$('#maxPrint').text(endDepthInput.value +"m"); 
+			$('#maxPrint').text(endDepthInput.value +"m"); 	
 			$('#minPrint').text(startDepthInput.value +"m"); 
-};
+			
+			var screenHeight = window.innerHeight;
+			var screenWidth = window.innerWidth;
+			$("body").css({ "width": screenWidth, "height": screenHeight -50});	
+	        window.print(); 
+			
+}else {
+	alert('Android browser does not support printing this map \n Open the map in a browser such as Chrome or Firefox to print');
+}
+				};
+				
+	var resetMap = function(){
+    $("body").css({ "width": '100%', "height": '100%' });	
+	$('#printlegend').css('display','none');
+	$('div.leaflet-control-scale.leaflet-control').appendTo('div.leaflet-bottom.leaflet-left');
+	};
 
-var resetMap = function(){
-		$('div.leaflet-top.leaflet-left').show();
-			$('div.leaflet-top.leaflet-right').show();
-			$('div.leaflet-bottom.leaflet-right').show();
-			$('div.leaflet-bottom.leaflet-left').show();
-			$('div.leaflet-top.leaflet-left').show();
-			$('div.leaflet-control-scale.leaflet-control').appendTo('div.leaflet-bottom.leaflet-left');
-			$('#printArea').hide();				
-};	
-	
+var expand = function(controlUI, controlUIClear, title){
+		controlUI.title = title;	
+			
+		L.DomEvent.addListener(controlUI, 'mouseenter', function (e) {
+			controlUIClear.style.display = 'block';
+			if (controlUI.className == 'uploadcsv myButton'){
+				$('#uploadCSV').show();
+			}			
+		 });
+		L.DomEvent.addListener(controlUI, 'mouseleave', function (e) {
+		controlUIClear.style.display = 'none';
+			if (controlUI.className == 'uploadcsv myButton'){
+				$('#uploadCSV').hide();
+			}
+		});	
+		L.DomEvent.addListener(controlUI, 'click', function(e){
+			
+			L.DomEvent.addListener(controlUI, 'mouseleave',function(e){
+						 controlUIClear.style.display = 'block';
+				if (controlUI.className == 'uploadcsv myButton'){
+				$('#uploadCSV').hide();
+			}
+			});
+       	});
+}	
