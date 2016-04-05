@@ -229,5 +229,4 @@ break;
 	$('#OrangeGreenBlueScale').show();
 	$('#colorLeg').attr("src","images/BlueGreenOrange.png");
   }
-  
 };
