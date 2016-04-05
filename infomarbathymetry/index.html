@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>INFOMAR Bathymetry Viewer</title>
@@ -291,20 +291,12 @@
 		font-size: 12px;
 		max-width: 150px;
 		}
-#printArea{
-position:absolute; 
-top:0; 
-left:0; 
-z-index:500;
-display: none;
-border-radius: 2px;
-overflow: auto;
-padding-:5px;
-}
-
+		
 #printlegend{
-position: float;
-float: left;
+display: none;
+position:absolute; 
+left:0px; 
+z-index:500;
 margin-right: 5px;
 border: grey solid 1px;
 border-radius: 2px;
@@ -360,6 +352,47 @@ img {
 			height:28px  !important;
 		}
 		}
+			@media print {
+    @page {
+        size: landscape;
+    }
+
+    html {
+        padding: 0px !important;
+    }
+
+    .noPrint {
+        display: none !important;
+    }
+
+    md-tooltip {
+        display: none;
+    }
+	.leaflet-control-zoom{
+	 display: none !important;
+	}
+	.leaflet-control-measure{
+	 display: none !important;
+	}
+	.leaflet-control-layers{
+	 display: none !important;
+	}
+	.leaflet-control-mouseposition{
+	 display: none !important;
+	}
+	.leaflet-control-attribution{
+	 display: none !important;
+	}
+	.leaflet-credits-control{
+	 display: none !important;
+	}
+	.opacity_slider_control{
+	 display: none !important;
+	}
+	.myButton{
+		 display: none !important;
+	}
+}
 		</style>
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -374,10 +407,9 @@ img {
 </head>
 <body>
 	<div id="container">
-		<div id="map" class="print"></div>
-	<div id="printArea">
-			<div id="printlegend">
-				<span>
+		<div id="map"></div>
+					<div id="printlegend">
+					<span>
 					<img id="colorLeg" src="images/BlueGreenOrange.png" alt="Legend">
 					<span id="maxPrint" style="vertical-align:top"></span><br><br><br><br><br><br><br>
 					<span id="minPrint" style="vertical-align:bottom"></span>	
@@ -385,9 +417,7 @@ img {
 				<br><br>
 				<img src="images/INFOMAR_logo_C.png" alt="N" style="margin-bottom:10px"><br>
 			</div>
-	
-</div>	
-		<div id="form-Shading" class="leaflet-bar">
+		<div id="form-Shading" class="leaflet-bar noPrint">
             <div id="toolbar_shaded" class="ui-widget-header ui-corner-all">
                 <span id="shadedlayerOnOff">
                     <input type="radio" id="repeat0_Shaded" name="repeat_Shaded" checked="checked" autocomplete="off"><label for="repeat0_Shaded" id="shaded0Label">On</label>
@@ -426,7 +456,7 @@ img {
                 <p style="width: 215px; font-size: small; width: 230px; font-family: Verdana,Arial,sans-serif;">The shaded relief layer highlights features on the seabed using light and shade. Change the default altitude, azimuth and vertical exaggeration using form below.</p><a style="width: 100%" href="http://www.isde.ie/#/" target="blank">Open ISDE Data Catalogue </a>
             </div>
         </div>
-        <div id="depth-ranges" draggable="true" class="leaflet-bar">
+        <div id="depth-ranges" draggable="true" class="leaflet-bar noPrint">
             <div id="toolbar" class="ui-widget-header ui-corner-all">
                 <span id="layerOnOff">
                     <input type="radio" id="repeat0" name="repeat" checked="checked" autocomplete="off"><label for="repeat0" id="repeat0Label">On</label>
@@ -609,7 +639,7 @@ img {
                 <p style="font-size: small; font-family: Verdana,Arial,sans-serif;">The bathymetry shows the depth of the seabed using a graduated colour scale. Bathymetry values are negative and elevation values (from LiDAR surveys) are positive above sea level. Change the range of values displayed and colour scale using form above.</p><a style="width: 100%" href="http://www.isde.ie/#/" target="blank">Open ISDE Data Catalogue </a>
             </div>
 		</div> 
-		<div id="uploadCSV" class="leaflet-bar">
+		<div id="uploadCSV" class="leaflet-bar noPrint">
 		<button id="closeCSVUploadForm"></button>
 		<span>Upload a csv file of points with columns:<br> Latitude (WGS84), Longitude (WGS84), Name. <br>For example: <em>
 		  51.559, -9.7129, Sample 1</em></span><br><br>
@@ -624,12 +654,12 @@ img {
 	<script src="scripts/tools/bathyTools.js" type="text/javascript"></script>
     <script src="scripts/tools/MousePosition/L.Control.MousePosition.js" type="text/javascript"></script>
 
-    <div id="latlng" class="leaflet-bar">
+    <div id="latlng" class="leaflet-bar noPrint">
         <script>
             L.control.mousePosition().addTo(map);
         </script>
     </div>
-    <div id="scale-bar" class="leaflet-bar">
+    <div id="scale-bar" class="leaflet-bar noPrint">
         <script>
             L.control.scale().addTo(map);
 			
