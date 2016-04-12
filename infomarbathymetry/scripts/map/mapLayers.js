@@ -160,6 +160,9 @@ map.addControl(idDepthControl);
 var uploadCSVControl = new L.Control.uploadCSVfile();
 map.addControl(uploadCSVControl);
 
+var printMapControl = new L.Control.printMap();
+map.addControl(printMapControl);
+
   L.control.measure({
 	primaryLengthUnit: 'meters', 
 	secondaryLengthUnit: 'kilometers',
