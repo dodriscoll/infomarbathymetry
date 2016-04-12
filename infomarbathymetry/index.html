@@ -22,7 +22,6 @@
 	<script src="scripts/libs/leaflet-1.0.0-b1/leaflet-src.js" type="text/javascript"></script> 
 	<script src="scripts/libs/esri-leaflet-v2.0.0-beta.5/dist/esri-leaflet.js" type="text/javascript"></script>
 	<script src="scripts/tools/opacityControl/lib/opacity/Control.Opacity.js" type="text/javascript"></script>
-<!--     <script src="scripts/tools/Leaflet.draw/dist/leaflet.draw-src.js" type="text/javascript"></script> -->
     <script type="text/javascript" src="scripts/display/L.Control.Credits/dist/leaflet-control-credits-src.js"></script>
 	<script src="scripts/tools/leaflet-measure/dist/leaflet-measure.js" type="text/javascript"></script>
  	<script src="scripts/display/Spin.js" type="text/javascript"></script> 
@@ -304,9 +303,28 @@ background-color: white;
 padding:5px;
 text-align:right;
 }
-img {
+.printLogo {
     float: right;
-    margin: 0px 0px 0px 2px;
+    margin: 5px 2px 5px 2px;
+}
+#shadedlegend {
+display: none;
+margin-bottom: 10px;
+text-align: left;
+width:150px;
+}
+#bathylegend {
+margin-bottom: 10px;
+text-align: left;
+width:80px;
+}
+#colorLeg{
+    float: left;
+	margin-bottom: 10px;
+}
+#shadedimg{
+    float: left;	
+	margin: 10px 3px;	
 }
 		</style>
 		<style>
@@ -337,6 +355,9 @@ img {
 		a.leaflet-control-measure-toggle{
 			width:32px  !important;
 			height:32px  !important;
+		}
+		.printButton{
+		display: none;
 		}
  		div.leaflet-credits-control{
 			height:	38px  !important;
@@ -408,14 +429,27 @@ img {
 <body>
 	<div id="container">
 		<div id="map"></div>
-					<div id="printlegend">
-					<span>
-					<img id="colorLeg" src="images/BlueGreenOrange.png" alt="Legend">
-					<span id="maxPrint" style="vertical-align:top"></span><br><br><br><br><br><br><br>
-					<span id="minPrint" style="vertical-align:bottom"></span>	
+			<div id="printlegend">
+					<div id="bathylegend">
+					<img id="colorLeg" src="images/OrangeGreenBlue.png" alt="Legend" />
+					<span style="text-align:right">
+					<span id="maxPrint" style="vertical-align:top"></span><div style="height:100px"></div>
+					<span id="minPrint" style="vertical-align:bottom"></span>
 					</span>
-				<br><br>
-				<img src="images/INFOMAR_logo_C.png" alt="N" style="margin-bottom:10px"><br>
+					<div>
+					<img id="printLogoBathy" class="printLogo" src="images/INFOMAR_logo_C.png" alt="N"><br>
+					</div>
+					</div>
+				<div id="shadedlegend">	
+				<div style="height:100px">
+				<img id="shadedimg"src="images/SR_Leg.png" alt="ShadedLegendImg" />
+				<div>
+				<span id="anglePrint"></span>
+				<span id="azimuthPrint"></span><br>
+				<span id="vertPrint"></span>
+				<img id="printLogoShaded" class="printLogo" src="images/INFOMAR_logo_C.png" alt="N"></div>
+				</div>
+			</div>		
 			</div>
 		<div id="form-Shading" class="leaflet-bar noPrint">
             <div id="toolbar_shaded" class="ui-widget-header ui-corner-all">
