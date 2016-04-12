@@ -34,20 +34,33 @@ var aspectRendering = {
 	Bathy.setRenderingRule(aspectRendering);
 	BathyShaded.setRenderingRule(renderingRule);	
 	BathyShaded.bringToBack();
+	
+	$('#colorLeg').attr("src","images/aspect.png");
+	$('#bathylegend').css('width','170px');
+	$('.printLogo').css('float','left');
+	$('#maxPrint').hide(); 	
+	$('#minPrint').hide(); 
 	};
 
 function aspectunClick() {
-    console.log(depthbyRangeRendering);
 
     if (typeof depthbyRangeRendering == "undefined")
     {
         Bathy.setRenderingRule(colourRendering);
-		BathyShaded.setRenderingRule(renderingRule);	
+		BathyShaded.setRenderingRule(renderingRule);
+		$('#colorLeg').attr("src","images/OrangeGreenBlue.png");	
+      		$('#maxPrint').text("50 m").show(); 	
+		$('#minPrint').text("-5223 m").show(); 
+		$('.printLogo').css('float','right');
     } 
     else{
         Bathy.setRenderingRule(depthbyRangeRendering);
         BathyShaded.setRenderingRule(newMaskRule);
         BathyShaded.bringToBack();
+        	$('#colorLeg').attr("src","images/"+colorScaleDrop.value+".png");	
+		$('#maxPrint').text(endDepthInput.value +"m").show(); 	
+		$('#minPrint').text(startDepthInput.value +"m").show(); 
+		$('.printLogo').css('float','right');
     }
     };	
 	
@@ -124,7 +137,12 @@ var slopeRendering = {
 	
 
 	BathyShaded.setRenderingRule(newMaskRule);
-	BathyShaded.bringToBack();	
+	BathyShaded.bringToBack();
+	$('#colorLeg').attr("src","images/slope.png");	
+	$('#bathylegend').css('width','145px');
+	$('.printLogo').css('float','left');
+	$('#maxPrint').hide(); 	
+	$('#minPrint').hide(); 
 	
   };
 
@@ -134,12 +152,20 @@ var slopeRendering = {
       if (typeof depthbyRangeRendering == "undefined") {
           Bathy.setRenderingRule(colourRendering);
 		  BathyShaded.setRenderingRule(renderingRule);	
+		$('#colorLeg').attr("src","images/BlueGreenOrange.png");	
+      		$('#maxPrint').text("50 m").show(); 	
+		$('#minPrint').text("-5223 m").show(); 
       }
       else {
           Bathy.setRenderingRule(depthbyRangeRendering);
           BathyShaded.setRenderingRule(newMaskRule);
           BathyShaded.bringToBack();
+          	$('#colorLeg').attr("src","images/"+colorScaleDrop.value+".png");	
+		$('#maxPrint').text(endDepthInput.value +"m").show(); 	
+		$('#minPrint').text(startDepthInput.value +"m").show(); 
       }
+      	  	$('#bathylegend').css('width','80px');
+		$('.printLogo').css('float','right');
   };
       
 	  var slopetoolon = false;
