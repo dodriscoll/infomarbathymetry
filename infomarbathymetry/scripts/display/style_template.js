@@ -4,13 +4,16 @@ $(function () {
 			 $('#printlegend').css({'display':'block', 'left':'55px'});
 			$('#maxPrint').text(endDepthInput.value +"m"); 
 			$('#minPrint').text(startDepthInput.value +"m"); 
-          event.preventDefault();
+			 $('#anglePrint').text("Altitude:"+ altitudeInput.value+"\xB0,"); 
+			  $('#azimuthPrint').text("Azimuth:" +azimuthInput.value + '\xB0,');
+			 $('#vertPrint').text("Vertical Exaggeration:"+ zfactorInput.value);
+          //event.preventDefault();
       })   
 	  .mouseleave(function (event) {
 		 $('#printlegend').css('display','none');
 			$('div.leaflet-top.leaflet-left').css({opacity:1});
 			$('div.leaflet-control-scale.leaflet-control').appendTo('div.leaflet-bottom.leaflet-left');
-          event.preventDefault();
+         // event.preventDefault();
       });
 });
 
