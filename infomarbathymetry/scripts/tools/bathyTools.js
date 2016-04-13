@@ -3,6 +3,12 @@ var aspectButton = document.getElementById('aspect');
 $('#aspectScale').hide();
 
 function aspectClick() {
+		$('#colorLeg').attr("src","images/aspect.png");
+	$('#colorLeg').css("margin-left","0px");
+	$('#printlegend').toggleClass('printlegendbathy printlegendother');
+	$('#maxPrint').hide(); 	
+	$('#minPrint').hide(); 
+	
 var aspectRendering = {
              "rasterFunction" : "Colormap",
              "rasterFunctionArguments" : {
@@ -32,36 +38,26 @@ var aspectRendering = {
 	};
 	
 	Bathy.setRenderingRule(aspectRendering);
-	BathyShaded.setRenderingRule(renderingRule);	
-	BathyShaded.bringToBack();
-	
-	$('#colorLeg').attr("src","images/aspect.png");
-	$('#bathylegend').css('width','170px');
-	$('.printLogo').css('float','left');
-	$('#maxPrint').hide(); 	
-	$('#minPrint').hide(); 
+	map.removeLayer(BathyShaded);
 	};
 
 function aspectunClick() {
-
     if (typeof depthbyRangeRendering == "undefined")
     {
         Bathy.setRenderingRule(colourRendering);
-		BathyShaded.setRenderingRule(renderingRule);
-		$('#colorLeg').attr("src","images/OrangeGreenBlue.png");	
+			$('#colorLeg').attr("src","images/OrangeGreenBlue.png");	
       		$('#maxPrint').text("50 m").show(); 	
-		$('#minPrint').text("-5223 m").show(); 
-		$('.printLogo').css('float','right');
+			$('#minPrint').text("-5223 m").show(); 
     } 
     else{
         Bathy.setRenderingRule(depthbyRangeRendering);
-        BathyShaded.setRenderingRule(newMaskRule);
-        BathyShaded.bringToBack();
-        	$('#colorLeg').attr("src","images/"+colorScaleDrop.value+".png");	
+		$('#colorLeg').attr("src","images/"+colorScaleDrop.value+".png");	
 		$('#maxPrint').text(endDepthInput.value +"m").show(); 	
 		$('#minPrint').text(startDepthInput.value +"m").show(); 
-		$('.printLogo').css('float','right');
-    }
+	}
+		map.addLayer(BathyShaded);
+		$('#printlegend').toggleClass('printlegendbathy printlegendother');
+		$('#colorLeg').css("margin-left","10px");
     };	
 	
        var aspecttoolon = false;
@@ -92,7 +88,11 @@ function aspectunClick() {
 $('#slopeScale').hide();
 
 function slopeClick() {
-
+	$('#colorLeg').attr("src","images/slope.png");	
+	$('#printlegend').toggleClass('printlegendbathy printlegendother');
+	$('#maxPrint').hide(); 	
+	$('#minPrint').hide(); 
+	
 var slopeRendering = {
              "rasterFunction" : "Colormap",
              "rasterFunctionArguments" : {
@@ -117,13 +117,6 @@ var slopeRendering = {
 					"rasterFunctionArguments": {
 					"RemoveEdgeEffect": "True",
 					"ZFactor": 1
-                    // "Raster":{		
-							// "rasterFunction" : "Mask",
-					        // "rasterFunctionArguments" : {
-					        // "IncludedRanges" : [maxDepth,minDepth]
-					// },  
-					// "variableName" : "DEM"
-                // },
 					},
 						"outputPixelType": "U8",
 						"variableName":"DEM"
@@ -134,38 +127,25 @@ var slopeRendering = {
 	   };
 	
 	Bathy.setRenderingRule(slopeRendering);
-	
-
-	BathyShaded.setRenderingRule(newMaskRule);
-	BathyShaded.bringToBack();
-	$('#colorLeg').attr("src","images/slope.png");	
-	$('#bathylegend').css('width','145px');
-	$('.printLogo').css('float','left');
-	$('#maxPrint').hide(); 	
-	$('#minPrint').hide(); 
-	
+	map.removeLayer(BathyShaded);	
   };
 
   function slopeunClick(e){
-      console.log(depthbyRangeRendering);
-
       if (typeof depthbyRangeRendering == "undefined") {
           Bathy.setRenderingRule(colourRendering);
-		  BathyShaded.setRenderingRule(renderingRule);	
-		$('#colorLeg').attr("src","images/BlueGreenOrange.png");	
+ 			$('#colorLeg').attr("src","images/OrangeGreenBlue.png");	
       		$('#maxPrint').text("50 m").show(); 	
-		$('#minPrint').text("-5223 m").show(); 
-      }
+			$('#minPrint').text("-5223 m").show(); 
+	}
       else {
           Bathy.setRenderingRule(depthbyRangeRendering);
-          BathyShaded.setRenderingRule(newMaskRule);
-          BathyShaded.bringToBack();
-          	$('#colorLeg').attr("src","images/"+colorScaleDrop.value+".png");	
-		$('#maxPrint').text(endDepthInput.value +"m").show(); 	
-		$('#minPrint').text(startDepthInput.value +"m").show(); 
+           BathyShaded.bringToBack();
+		   	$('#colorLeg').attr("src","images/"+colorScaleDrop.value+".png");	
+			$('#maxPrint').text(endDepthInput.value +"m").show(); 	
+			$('#minPrint').text(startDepthInput.value +"m").show(); 
       }
-      	  	$('#bathylegend').css('width','80px');
-		$('.printLogo').css('float','right');
+		map.addLayer(BathyShaded);
+	  	$('#printlegend').toggleClass('printlegendbathy printlegendother');
   };
       
 	  var slopetoolon = false;
