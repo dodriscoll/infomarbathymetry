@@ -142,9 +142,6 @@ BathyShaded.bringToBack();
 	  spinner.stop();
  });
 	  
-var printMapControl = new L.Control.printMap();
-map.addControl(printMapControl);
-
 L.controlCredits({
     image: "images/INFOMAR_logo_C.png",
     link: "javascript:void(0);",
