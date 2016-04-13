@@ -1,27 +1,27 @@
-﻿$('#repeat1').on('click', function bathyClick(e){
-    Bathy.setOpacity(0);
-    	  shadedPrint();
-});
-$('#repeat0').on('click', function bathyunClick(e) {
-    Bathy.setOpacity(0.75);
-    	  bathyPrint();
-});
+  $('#repeat1').on('click', function bathyClick(e){
+	  map.removeLayer(Bathy);
+	  shadedPrint();
+  });
+  $('#repeat0').on('click', function bathyunClick(e) {
+	  map.addLayer(Bathy);
+      bathyPrint();
+	  });
 
-$('#repeat1_Shaded').on('click', function shadedreliefClick(e) {
-    BathyShaded.setOpacity(0);
-});
+  $('#repeat1_Shaded').on('click', function shadedreliefClick(e) {
+	  map.removeLayer(BathyShaded);
+ });
 
-$('#repeat0_Shaded').on('click',function shadedreliefunClick(e) {
-    BathyShaded.setOpacity(0.75);
-});
+  $('#repeat0_Shaded').on('click',function shadedreliefunClick(e) {
+	  map.addLayer(BathyShaded);
+    });
 
 var shadedPrint = function (){
-	 $('#bathylegend').hide(); 
-	 $('#shadedlegend').show();  
-	 $('img').css('float','left');
+	$('#printlegend').toggleClass('printlegendbathy printlegendother');
+	$('#bathylegend').hide(); 
+	$('#shadedlegend').show();  
 }
 var bathyPrint = function (){
+	$('#printlegend').toggleClass('printlegendbathy printlegendother');
 	 $('#bathylegend').show(); 	
 	 $('#shadedlegend').hide();  
-	 $('img').css('float','left');
 }
