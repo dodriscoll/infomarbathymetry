@@ -6,7 +6,6 @@ var map = L.map('map', {
 	maxBounds: [[40,-30],[65,30]]
 	}).setView([53.5, -13],6);
 map.attributionControl.addAttribution("&copy; <a href=http://www.infomar.ie>INFOMAR</a>");
-map.spin(true);
 
 var viewportWidth = $(window).width();
 if (viewportWidth < 480){
@@ -136,9 +135,12 @@ map.addControl(opacitySlider);
 opacitySlider.setOpacityLayer(Bathy);
 
 BathyShaded.bringToBack();
-Bathy.on('load',function(e){
-          map.spin(false);
-      }, 3000);
+  Bathy.on('load',function(e){
+	  spinner.stop();
+ });
+   BathyShaded.on('load',function(e){
+	  spinner.stop();
+ });
 	  
 var printMapControl = new L.Control.printMap();
 map.addControl(printMapControl);
@@ -169,3 +171,8 @@ map.addControl(printMapControl);
 	primaryAreaUnit: 'sqmeters', 
 	secondaryAreaUnit: 'sqkilometers' 
   }).addTo(map);
+  
+	map.on('movestart', function(){
+		spinner.spin();
+		container.appendChild(spinner.el);
+	});
