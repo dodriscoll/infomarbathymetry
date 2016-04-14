@@ -223,5 +223,5 @@ break;
 	$('#BlueGreenScale').hide();
 	$('#OrangeGreenBlueScale').show();
   }
-    $('#colorLeg').attr("src","images/"+colorScaleDrop.value+".png");
+  $('#colorLeg').attr("src","images/"+colorScaleDrop.value+".png");
 };

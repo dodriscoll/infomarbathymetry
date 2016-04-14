@@ -141,7 +141,8 @@ BathyShaded.bringToBack();
    BathyShaded.on('load',function(e){
 	  spinner.stop();
  });
-	  
+ 
+
 L.controlCredits({
     image: "images/INFOMAR_logo_C.png",
     link: "javascript:void(0);",
@@ -168,7 +169,7 @@ map.addControl(printMapControl);
 	primaryAreaUnit: 'sqmeters', 
 	secondaryAreaUnit: 'sqkilometers' 
   }).addTo(map);
-  
+
 	map.on('movestart', function(){
 		spinner.spin();
 		container.appendChild(spinner.el);

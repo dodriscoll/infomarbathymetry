@@ -1,4 +1,4 @@
-  $('#repeat1').on('click', function bathyClick(e){
+﻿  $('#repeat1').on('click', function bathyClick(e){
 	  map.removeLayer(Bathy);
 	  shadedPrint();
   });

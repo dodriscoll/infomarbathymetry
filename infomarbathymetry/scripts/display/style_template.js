@@ -1,21 +1,21 @@
-$(function () {
-    $(".printButton")
-      .mouseenter(function (event) {
+ $(function () {
+     $(".printButton")
+       .mouseenter(function (event) {
 			 $('#printlegend').css({'display':'block', 'left':'55px'});
-			$('#maxPrint').text(endDepthInput.value +"m"); 
-			$('#minPrint').text(startDepthInput.value +"m"); 
+			 $('#maxPrint').text(endDepthInput.value +"m"); 
+			 $('#minPrint').text(startDepthInput.value +"m"); 
 			 $('#anglePrint').text("Altitude:"+ altitudeInput.value+"\xB0,"); 
 			  $('#azimuthPrint').text("Azimuth:" +azimuthInput.value + '\xB0,');
-			 $('#vertPrint').text("Vertical Exaggeration:"+ zfactorInput.value);
-          //event.preventDefault();
-      })   
-	  .mouseleave(function (event) {
-		 $('#printlegend').css('display','none');
-			$('div.leaflet-top.leaflet-left').css({opacity:1});
-			$('div.leaflet-control-scale.leaflet-control').appendTo('div.leaflet-bottom.leaflet-left');
-         // event.preventDefault();
-      });
-});
+			 $('#vertPrint').text("Vertical Exaggeration:"+ zfactorInput.value); 
+          // event.preventDefault();
+       })   
+	   .mouseleave(function (event) {
+		  $('#printlegend').css('display','none');
+			 $('div.leaflet-top.leaflet-left').css({opacity:1});
+			 $('div.leaflet-control-scale.leaflet-control').appendTo('div.leaflet-bottom.leaflet-left');
+          // event.preventDefault();
+       });
+ });
 
 $(function () {
     $("#newbutton")
@@ -163,10 +163,10 @@ $(document).ready(function () {
 	 });
 	});
 	
-    $(function () {
-        $("#layerOnOff").buttonset({
-			width: '10px'
-		});
+     $(function () {
+         $("#layerOnOff").buttonset({
+			 width: '10px'
+		 });
     });
 $(function () {
     $("#tools")

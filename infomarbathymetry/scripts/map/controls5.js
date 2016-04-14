@@ -427,5 +427,6 @@ if(window.print) {
 	$('#printlegend').css('display','none');
 	$('div.leaflet-control-scale.leaflet-control').appendTo('div.leaflet-bottom.leaflet-left');
 	};
+	
 
 	
