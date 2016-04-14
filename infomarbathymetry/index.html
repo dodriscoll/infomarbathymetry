@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>INFOMAR Bathymetry Viewer</title>
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="scripts/display/L.Control.Credits/dist/leaflet-control-credits-src.js"></script>
 	<script src="scripts/tools/leaflet-measure/dist/leaflet-measure.js" type="text/javascript"></script>
  	<script src="scripts/display/Spin.js" type="text/javascript"></script> 
-<!--	<script src="scripts/display/leaflet.spin.js" type="text/javascript"></script>-->
+<!-- 	<script src="scripts/display/leaflet.spin.js" type="text/javascript"></script> -->
 	<script src="scripts/display/style_template.js" type="text/javascript"></script>
 	<script src="scripts/tools/addcsv/leaflet.geoCSV.js" type="text/javascript"></script>
 	    <script type="text/javascript"></script>
@@ -303,28 +303,41 @@ background-color: white;
 padding:5px;
 text-align:right;
 }
+.printlegendother{
+width:170px;
+margin-bottom: 10px;
+}
+.printlegendbathy{
+width:90px;
+}
 .printLogo {
-    float: right;
-    margin: 5px 2px 5px 2px;
+    float: left;
+    margin: 5px 15px 2px 2px;
 }
 #shadedlegend {
 display: none;
 margin-bottom: 10px;
 text-align: left;
-width:150px;
+height: 140px;
 }
 #bathylegend {
 margin-bottom: 10px;
-text-align: left;
-width:80px;
+text-align: right;
 }
 #colorLeg{
     float: left;
 	margin-bottom: 10px;
+	margin-left: 10px;
 }
 #shadedimg{
     float: left;	
 	margin: 10px 3px;	
+}
+#disclaimer{
+text-align:left;
+font-size: x-small;
+z-index:500;
+color: red;
 }
 		</style>
 		<style>
@@ -335,6 +348,9 @@ width:80px;
             right: 30px;
 			font-size: 12px;
 					}
+			.printButton{
+		 display: none !important;
+	}			
 		div#uploadCSV {
 			max-width: 200px;
 			font-size: 12px;
@@ -355,9 +371,6 @@ width:80px;
 		a.leaflet-control-measure-toggle{
 			width:32px  !important;
 			height:32px  !important;
-		}
-		.printButton{
-		display: none;
 		}
  		div.leaflet-credits-control{
 			height:	38px  !important;
@@ -429,11 +442,12 @@ width:80px;
 <body>
 	<div id="container">
 		<div id="map"></div>
-			<div id="printlegend">
+			<div id="printlegend" class="printlegendbathy">
 					<div id="bathylegend">
 					<img id="colorLeg" src="images/OrangeGreenBlue.png" alt="Legend" />
 					<span style="text-align:right">
-					<span id="maxPrint" style="vertical-align:top"></span><div style="height:100px"></div>
+					<span id="maxPrint" style="vertical-align:top"></span>
+					<div style="height:100px"></div>
 					<span id="minPrint" style="vertical-align:bottom"></span>
 					</span>
 					<div>
@@ -449,8 +463,12 @@ width:80px;
 				<span id="vertPrint"></span>
 				<img id="printLogoShaded" class="printLogo" src="images/INFOMAR_logo_C.png" alt="N"></div>
 				</div>
-			</div>		
 			</div>
+				<div id='disclaimer'>
+				<p>Map is NOT to be used for navigation</p>
+				</div>			
+			</div>
+
 		<div id="form-Shading" class="leaflet-bar noPrint">
             <div id="toolbar_shaded" class="ui-widget-header ui-corner-all">
                 <span id="shadedlayerOnOff">
@@ -703,8 +721,10 @@ function refreshLayers() {
 	Bathy.bringToFront();
     var refresh = setTimeout("refreshLayers()", timeout);
         }
+		var spinner = new Spinner().spin();
+		container.appendChild(spinner.el);
+		
         </script>
     </div>	
 </body>
-
 </html>
